@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Zellar</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5}
+.login-box{background:#fff;border-radius:12px;padding:40px;max-width:380px;margin:80px auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);text-align:center}
+.login-box h2{color:#0a1f5c;margin-bottom:8px;font-size:24px}
+.login-box p{color:#888;font-size:14px;margin-bottom:25px}
+.login-box input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:15px}
+.login-box button{width:100%;background:#0a1f5c;color:#fff;padding:13px;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:bold}
+.login-box button:hover{background:#f0c040;color:#0a1f5c}
+.painel{display:none;padding:20px;max-width:700px;margin:0 auto}
+.painel h2{color:#0a1f5c;margin-bottom:20px;font-size:22px;text-align:center}
+.card-admin{background:#fff;border-radius:12px;padding:25px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1);border-left:5px solid #f0c040}
+.card-admin h3{color:#0a1f5c;margin-bottom:15px;font-size:18px}
+.card-admin input,.card-admin textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px}
+.card-admin button{background:#0a1f5c;color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:bold}
+.card-admin button:hover{background:#f0c040;color:#0a1f5c}
+.btn-sair{background:#cc0000;color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:bold;display:block;margin:0 auto 30px}
+.lista-servicos{list-style:none}
+.lista-servicos li{background:#f5f5f5;padding:10px;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.lista-servicos li button{background:#cc0000;color:#fff;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px}
+.msg{color:green;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="login-box" id="loginBox">
+  <h2>🔐 Área do Dono</h2>
+  <p>Zellar Serviços</p>
+  <input type="text" id="usuario" placeholder="Usuário">
+  <input type="password" id="senha" placeholder="Senha">
+  <button onclick="fazerLogin()">Entrar</button>
+</div>
+
+<div class="painel" id="painel">
+  <h2>⚙️ Painel Administrativo</h2>
+
+  <div class="card-admin">
+    <h3>📞 Atualizar Contato</h3>
+    <input type="text" id="novoTel" placeholder="Novo telefone">
+    <input type="text" id="novoEmail" placeholder="Novo e-mail">
+    <button onclick="salvarContato()">Salvar</button>
+    <p class="msg" id="msgContato"></p>
+  </div>
+
+  <div class="card-admin">
+    <h3>➕ Adicionar Serviço</h3>
+    <input type="text" id="nomeServico" placeholder="Nome do serviço">
+    <input type="text" id="valorServico" placeholder="Valor (ex: R$ 150,00)">
+    <textarea id="descServico" placeholder="Descrição do serviço" rows="3"></textarea>
+    <button onclick="adicionarServico()">Adicionar</button>
+    <p class="msg" id="msgServico"></p>
+  </div>
+
+  <div class="card-admin">
+    <h3>📋 Serviços Cadastrados</h3>
+    <ul class="lista-servicos" id="listaServicos"></ul>
+  </div>
+
+  <button class="btn-sair" onclick="sair()">Sair</button>
+</div>
+
+<script>
+const USUARIO = "zellar";
+const SENHA = "zellar2025";
+
+function fazerLogin(){
+  const u = document.getElementById("usuario").value;
+  const s = document.getElementById("senha").value;
+  if(u === USUARIO && s === SENHA){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("painel").style.display = "block";
+    carregarServicos();
+  } else {
+    alert("Usuário ou senha incorretos!");
+  }
+}
+
+function salvarContato(){
+  const tel = document.getElementById("novoTel").value;
+  const email = document.getElementById("novoEmail").value;
+  if(tel || email){
+    document.getElementById("msgContato").textContent = "Contato atualizado com sucesso!";
+    setTimeout(()=>document.getElementById("msgContato").textContent="",3000);
+  }
+}
+
+function adicionarServico(){
+  const nome = document.getElementById("nomeServico").value;
+  const valor = document.getElementById("valorServico").value;
+  const desc = document.getElementById("descServico").value;
+  if(!nome || !valor){ alert("Preencha nome e valor!"); return; }
+  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
+  servicos.push({nome, valor, desc});
+  localStorage.setItem("servicos", JSON.stringify(servicos));
+  document.getElementById("nomeServico").value="";
+  document.getElementById("valorServico").value="";
+  document.getElementById("descServico").value="";
+  document.getElementById("msgServico").textContent="Serviço adicionado!";
+  setTimeout(()=>document.getElementById("msgServico").textContent="",3000);
+  carregarServicos();
+}
+
+function carregarServicos(){
+  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
+  const lista = document.getElementById("listaServicos");
+  lista.innerHTML="";
+  servicos.forEach((s,i)=>{
+    lista.innerHTML+=`<li><span>${s.nome} — ${s.valor}</span><button onclick="removerServico(${i})">Remover</button></li>`;
+  });
+}
+
+function removerServico(i){
+  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
+  servicos.splice(i,1);
+  localStorage.setItem("servicos", JSON.stringify(servicos));
+  carregarServicos();
+}
+
+function sair(){
+  document.getElementById("loginBox").style.display = "block";
+  document.getElementById("painel").style.display = "none";
+  document.getElementById("usuario").value="";
+  document.getElementById("senha").value="";
+}
+</script>
+
+</body>
+</html>
