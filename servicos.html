@@ -1,185 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços - Zellar</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-nav{background:#0a1f5c;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;width:100%;top:0;z-index:100}
-nav h1{color:#f0c040;font-size:22px}
-nav a{color:#fff;text-decoration:none;margin-left:6px;font-size:11px}
-.topo{background:linear-gradient(135deg,#0a1f5c,#1a3a8c);color:#fff;text-align:center;padding:100px 20px 40px}
-.topo h2{color:#f0c040;font-size:26px;margin-bottom:10px}
-.topo p{font-size:15px}
-.servicos{padding:40px 20px;background:#f5f5f5}
-.servico-item{background:#fff;border-radius:12px;padding:25px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1);border-left:5px solid #f0c040}
-.servico-item h3{color:#0a1f5c;font-size:20px;margin-bottom:10px}
-.servico-item p{color:#555;font-size:14px;margin-bottom:15px}
-.servico-item ul{color:#555;font-size:14px;margin-left:20px;margin-bottom:15px}
-.servico-item ul li{margin-bottom:5px}
-.btn{background:#0a1f5c;color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-size:14px;display:inline-block}
-.btn-wp{background:#25D366;color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-size:14px;display:inline-block;margin-left:10px}
-footer{background:#000;color:#888;text-align:center;padding:15px;font-size:12px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Zellar Serviços</title>
+    <style>
+        :root { --primary: #002855; --secondary: #f4b400; --dark: #1e1e24; --light: #f8f9fa; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); margin: 0; padding: 20px; color: var(--dark); }
+        nav { display: flex; gap: 15px; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); justify-content: center; background-color: var(--primary); }
+        nav a { text-decoration: none; color: white; font-weight: bold; }
+        nav a:hover { color: var(--secondary); }
+        .logo-nav { color: var(--secondary); font-size: 22px; font-weight: bold; margin-right: auto; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card-servico { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 5px solid var(--secondary); }
+        .card-servico h3 { margin-top: 0; color: var(--primary); font-size: 22px; display: flex; align-items: center; gap: 10px; }
+        .card-servico p { color: #555; line-height: 1.6; }
+        .lista-precos { padding-left: 20px; margin: 15px 0; }
+        .lista-precos li { margin: 8px 0; font-size: 16px; color: #333; }
+        .btn-contratar { background: var(--primary); color: white; border: none; font-weight: bold; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.2s; display: inline-block; text-decoration: none; margin-top: 10px; }
+        .btn-contratar:hover { background: #001f42; transform: scale(1.05); }
+    </style>
 </head>
 <body>
 
-<nav>
-  <h1>Zellar Serviços</h1>
-  <div>
-    <a href="index.html">Início</a>
-    <a href="servicos.html">Serviços</a>
-    <a href="contato.html">Contato</a>
-    <a href="admin.html">Admin</a>
-  </div>
-</nav>
+    <div class="container">
+        <nav>
+            <div class="logo-nav">Zellar Serviços</div>
+            <div class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="servicos.html" style="color: var(--secondary);">Serviços</a>
+                <a href="contato.html">Contato</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </nav>
 
-<div class="topo">
-  <h2>Nossos Serviços</h2>
-  <p>Escolha o serviço ideal para você e entre em contato</p>
-</div>
+        <!-- Bloco de Higienização de Ar-Condicionado -->
+        <div class="card-servico">
+            <h3>❄️ Higienização de Ar-Condicionado</h3>
+            <p>Limpeza técnica completa do seu ar-condicionado.</p>
+            <ul class="lista-precos">
+                <li>Split até 12.000 BTUs — <b id="p1">Carregando...</b></li>
+                <li>Split 18.000 a 24.000 BTUs — <b id="p2">Carregando...</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
 
-<div class="servicos">
+        <!-- Bloco de Limpeza de Piscina -->
+        <div class="card-servico">
+            <h3>🏊 Limpeza de Piscina</h3>
+            <p>Manutenção e limpeza completa de piscinas.</p>
+            <ul class="lista-precos">
+                <li>Piscina até 25m² — <b id="p3">Carregando...</b></li>
+                <li>Piscina 26m² a 50m² — <b id="p4">Carregando...</b></li>
+                <li>Contrato mensal — <b id="p5">Carregando...</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
 
-  <div class="servico-item">
-    <h3>🏠 Limpeza Residencial</h3>
-    <p>Diaristas experientes para sua casa ficar impecável.</p>
-    <ul>
-     <li data-servico="🏠 Limpeza Residencial - 4 horas">4 horas — R$ 180,00</li>
-<li data-servico="🏠 Limpeza Residencial - 6 horas">6 horas — R$ 260,00</li>
-<li data-servico="🏠 Limpeza Residencial - 8 horas">8 horas — R$ 340,00</li>
-<li data-servico="🏠 Limpeza Residencial - Pacote mensal">Pacote mensal (4h/semana) — R$ 720,00/mês</li>
+        <!-- Serviços Extras Dinâmicos -->
+        <div id="servicosExtrasContainer"></div>
+    </div>
 
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza Residencial">Contratar</a>
-  </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  <div class="servico-item">
-    <h3>👕 Passadoria</h3>
-    <p>Roupas passadas com cuidado e eficiência.</p>
-    <ul>
-      <li>4 horas — R$ 170,00</li>
-      <li>6 horas — R$ 250,00</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Passadoria">Contratar</a>
-  </div>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHOnmbsKftrblC0-OvxL-U1OUONkT7bXs",
+            authDomain: "zellar-servicos.firebaseapp.com",
+            projectId: "zellar-servicos",
+            storageBucket: "zellar-servicos.appspot.com",
+            messagingSenderId: "13083302895",
+            appId: "1:13083302895:web:e966c2442eb9ffd9feac7e",
+            measurementId: "G-CBF7R981PY"
+        };
 
-  <div class="servico-item">
-    <h3>👩‍🍳 Cozinheira Residencial</h3>
-    <p>Profissionais para cozinhar no conforto da sua casa.</p>
-    <ul>
-      <li>4 horas — R$ 220,00</li>
-      <li>Mensal 8h — R$ 1.040,00/mês</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Cozinheira">Contratar</a>
-  </div>
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-  <div class="servico-item">
-    <h3>❄️ Higienização de Ar-Condicionado</h3>
-    <p>Limpeza técnica completa do seu ar-condicionado.</p>
-    <ul>
-      <li>Split até 12.000 BTUs — R$ 180,00</li>
-      <li>Split 18.000 a 24.000 BTUs — R$ 220,00</li>
-      <li>Cassete ou Piso Teto — Sob consulta</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Higienização de Ar-Condicionado">Contratar</a>
-  </div>
+        // Mapeamento dos IDs do banco para os elementos HTML correspondentes
+        const mapeamentoPrecos = {
+            "❄️ Ar-Condicionado - Split até 12k BTUs": { id: "p1", padrao: "R$ 180,00" },
+            "❄️ Ar-Condicionado - Split 18k-24k BTUs": { id: "p2", padrao: "R$ 220,00" },
+            "🏊 Piscina - Até 25m²": { id: "p3", padrao: "R$ 180,00" },
+            "🏊 Piscina - 26m² a 50m²": { id: "p4", padrao: "R$ 250,00" },
+            "🏊 Piscina - Contrato mensal": { id: "p5", padrao: "R$ 550,00" }
+        };
 
-  <div class="servico-item">
-    <h3>🏊 Limpeza de Piscina</h3>
-    <p>Manutenção e limpeza completa de piscinas.</p>
-    <ul>
-      <li>Piscina até 25m² — R$ 180,00</li>
-      <li>Piscina 26m² a 50m² — R$ 250,00</li>
-      <li>Contrato mensal — R$ 550,00</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza de Piscina">Contratar</a>
-  </div>
-
-  <div class="servico-item">
-    <h3>🚗 Estética Automotiva</h3>
-    <p>Seu carro impecável por dentro e por fora.</p>
-    <ul>
-      <li>Lavagem Ecológica — R$ 60,00</li>
-      <li>Higienização Interna — R$ 180,00</li>
-      <li>Higienização + Ar-Condicionado — R$ 250,00</li>
-      <li>Polimento Comercial — A partir de R$ 350,00</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Estética Automotiva">Contratar</a>
-  </div>
-
-  <div class="servico-item">
-    <h3>🏢 Faxina em Escritórios</h3>
-    <p>Um escritório bem cuidado é o primeiro passo para uma semana produtiva.</p>
-    <ul>
-      <li>Atendimento em condomínios e empresas</li>
-      <li>Valor sob consulta</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Faxina em Escritório">Contratar</a>
-  </div>
-
-  <div class="servico-item">
-    <h3>🎉 Limpeza para Eventos</h3>
-    <p>Equipe preparada para deixar seu evento impecável.</p>
-    <ul>
-      <li>Valor sob consulta</li>
-    </ul>
-    <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza para Eventos">Contratar</a>
-  </div>
-
-</div>
-
-<footer>
-  <p>© 2025 Zellar Serviços. Todos os direitos reservados.</p>
-</footer>
-
-</body><script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDHOnmbsKftrblC0-0vxL-U1OUONkT7bXs",
-  authDomain: "zellar-servicos.firebaseapp.com",
-  projectId: "zellar-servicos",
-  storageBucket: "zellar-servicos.firebasestorage.app",
-  messagingSenderId: "130833028955",
-  appId: "1:130833028955:web:e966c2442eb9ffd9feac7e",
-  measurementId: "G-CBF7R981PY"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function aplicarTodosOsPrecos() {
-  try {
-    const querySnapshot = await getDocs(collection(db, "precos"));
-    
-    // Procura por todas as tags <li> da página
-    const itensLista = document.querySelectorAll("li");
-
-    querySnapshot.forEach((doc) => {
-      const nomeDoServicoBanco = doc.id; // Ex: "🏠 Limpeza Residencial - 4 horas"
-      const dados = doc.data();
-
-      itensLista.forEach((li) => {
-        // Pega o atributo data-servico OU o texto atual do li caso o data-servico não esteja lá
-        const dataServico = li.getAttribute("data-servico");
-        const textoLi = li.textContent.trim();
-
-        // Se o li for o serviço do banco, atualiza o preço na hora!
-        if (dataServico === nomeDoServicoBanco || textoLi.includes(nomeDoServicoBanco.split(" - ")[1])) {
-          const escopoTexto = nomeDoServicoBanco.split(" - ")[1] || "Valor";
-          li.innerHTML = `${escopoTexto} — ${dados.preco}`;
+        async function carregarPrecosFixos() {
+            for (const [idBanco, info] of Object.entries(mapeamentoPrecos)) {
+                try {
+                    const docRef = doc(db, "precos", idBanco);
+                    const docSnap = await getDoc(docRef);
+                    const elemento = document.getElementById(info.id);
+                    if (elemento) {
+                        if (docSnap.exists()) {
+                            elemento.innerText = docSnap.data().preco;
+                        } else {
+                            elemento.innerText = info.padrao; // Se não mudou no admin, exibe o padrão antigo
+                        }
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
         }
-      });
-    });
-  } catch (erro) {
-    console.error("Erro ao carregar os preços: ", erro);
-  }
-}
 
-window.addEventListener("DOMContentLoaded", aplicarTodosOsPrecos);
-</script>
+        async function carregarServicosExtras() {
+            const container = document.getElementById("servicosExtrasContainer");
+            try {
+                const snap = await getDocs(collection(db, "servicos_extras"));
+                snap.forEach(d => {
+                    const data = d.data();
+                    const card = document.createElement("div");
+                    card.className = "card-servico";
+                    card.innerHTML = `
+                        <h3>✨ ${data.nome}</h3>
+                        <p>${data.desc || 'Sem descrição.'}</p>
+                        <ul class="lista-precos">
+                            <li>Valor — <b>${data.valor}</b></li>
+                        </ul>
+                        <a href="contato.html" class="btn-contratar">Contratar</a>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }
 
+        // Executa ao carregar a página
+        carregarPrecosFixos();
+        carregarServicosExtras();
+    </script>
+</body>
 </html>
+
