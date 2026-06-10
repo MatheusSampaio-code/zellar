@@ -7,10 +7,21 @@
     <style>
         :root { --primary: #002855; --secondary: #f4b400; --dark: #1e1e24; --light: #f8f9fa; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); margin: 0; padding: 20px; color: var(--dark); }
-        nav { display: flex; gap: 15px; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); justify-content: center; background-color: var(--primary); }
-        nav a { text-decoration: none; color: white; font-weight: bold; }
+        
+        /* Ajuste do Menu para Celular */
+        nav { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 20px; background-color: var(--primary); padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .logo-nav { color: var(--secondary); font-size: 22px; font-weight: bold; }
+        .nav-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: white; font-weight: bold; font-size: 15px; }
         nav a:hover { color: var(--secondary); }
-        .logo-nav { color: var(--secondary); font-size: 22px; font-weight: bold; margin-right: auto; }
+        
+        /* Layout no Computador (Telas maiores) */
+        @media (min-width: 600px) {
+            nav { flex-direction: row; justify-content: space-between; }
+            .logo-nav { margin-right: auto; }
+            .nav-links { gap: 15px; }
+        }
+
         .container { max-width: 800px; margin: 0 auto; }
         .card-servico { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 5px solid var(--secondary); }
         .card-servico h3 { margin-top: 0; color: var(--primary); font-size: 22px; display: flex; align-items: center; gap: 10px; }
@@ -34,7 +45,6 @@
             </div>
         </nav>
 
-        <!-- Bloco de Higienização de Ar-Condicionado -->
         <div class="card-servico">
             <h3>❄️ Higienização de Ar-Condicionado</h3>
             <p>Limpeza técnica completa do seu ar-condicionado.</p>
@@ -45,7 +55,6 @@
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
 
-        <!-- Bloco de Limpeza de Piscina -->
         <div class="card-servico">
             <h3>🏊 Limpeza de Piscina</h3>
             <p>Manutenção e limpeza completa de piscinas.</p>
@@ -57,7 +66,6 @@
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
 
-        <!-- Serviços Extras Dinâmicos -->
         <div id="servicosExtrasContainer"></div>
     </div>
 
@@ -78,7 +86,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Mapeamento dos IDs do banco para os elementos HTML correspondentes
         const mapeamentoPrecos = {
             "❄️ Ar-Condicionado - Split até 12k BTUs": { id: "p1", padrao: "R$ 180,00" },
             "❄️ Ar-Condicionado - Split 18k-24k BTUs": { id: "p2", padrao: "R$ 220,00" },
@@ -97,7 +104,7 @@
                         if (docSnap.exists()) {
                             elemento.innerText = docSnap.data().preco;
                         } else {
-                            elemento.innerText = info.padrao; // Se não mudou no admin, exibe o padrão antigo
+                            elemento.innerText = info.padrao;
                         }
                     }
                 } catch (e) {
@@ -129,7 +136,6 @@
             }
         }
 
-        // Executa ao carregar a página
         carregarPrecosFixos();
         carregarServicosExtras();
     </script>
