@@ -8,14 +8,12 @@
         :root { --primary: #002855; --secondary: #f4b400; --dark: #1e1e24; --light: #f8f9fa; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); margin: 0; padding: 20px; color: var(--dark); }
         
-        /* Ajuste do Menu para Celular */
         nav { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 20px; background-color: var(--primary); padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .logo-nav { color: var(--secondary); font-size: 22px; font-weight: bold; }
         .nav-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         nav a { text-decoration: none; color: white; font-weight: bold; font-size: 15px; }
         nav a:hover { color: var(--secondary); }
         
-        /* Layout no Computador (Telas maiores) */
         @media (min-width: 600px) {
             nav { flex-direction: row; justify-content: space-between; }
             .logo-nav { margin-right: auto; }
@@ -49,8 +47,8 @@
             <h3>❄️ Higienização de Ar-Condicionado</h3>
             <p>Limpeza técnica completa do seu ar-condicionado.</p>
             <ul class="lista-precos">
-                <li>Split até 12.000 BTUs — <b id="p1">Carregando...</b></li>
-                <li>Split 18.000 a 24.000 BTUs — <b id="p2">Carregando...</b></li>
+                <li>Split até 12.000 BTUs — <b id="ar_12k">R$ 180,00</b></li>
+                <li>Split 18.000 a 24.000 BTUs — <b id="ar_24k">R$ 220,00</b></li>
             </ul>
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
@@ -59,9 +57,9 @@
             <h3>🏊 Limpeza de Piscina</h3>
             <p>Manutenção e limpeza completa de piscinas.</p>
             <ul class="lista-precos">
-                <li>Piscina até 25m² — <b id="p3">Carregando...</b></li>
-                <li>Piscina 26m² a 50m² — <b id="p4">Carregando...</b></li>
-                <li>Contrato mensal — <b id="p5">Carregando...</b></li>
+                <li>Piscina até 25m² — <b id="piscina_25">R$ 180,00</b></li>
+                <li>Piscina 26m² a 50m² — <b id="piscina_50">R$ 250,00</b></li>
+                <li>Contrato mensal — <b id="piscina_mensal">R$ 550,00</b></li>
             </ul>
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
@@ -79,37 +77,22 @@
             projectId: "zellar-servicos",
             storageBucket: "zellar-servicos.appspot.com",
             messagingSenderId: "13083302895",
-            appId: "1:13083302895:web:e966c2442eb9ffd9feac7e",
-            measurementId: "G-CBF7R981PY"
+            appId: "1:13083302895:web:e966c2442eb9ffd9feac7e"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const mapeamentoPrecos = {
-            "❄️ Ar-Condicionado - Split até 12k BTUs": { id: "p1", padrao: "R$ 180,00" },
-            "❄️ Ar-Condicionado - Split 18k-24k BTUs": { id: "p2", padrao: "R$ 220,00" },
-            "🏊 Piscina - Até 25m²": { id: "p3", padrao: "R$ 180,00" },
-            "🏊 Piscina - 26m² a 50m²": { id: "p4", padrao: "R$ 250,00" },
-            "🏊 Piscina - Contrato mensal": { id: "p5", padrao: "R$ 550,00" }
-        };
+        const listaIds = ["ar_12k", "ar_24k", "piscina_25", "piscina_50", "piscina_mensal"];
 
         async function carregarPrecosFixos() {
-            for (const [idBanco, info] of Object.entries(mapeamentoPrecos)) {
+            for (const id de listaIds) {
                 try {
-                    const docRef = doc(db, "precos", idBanco);
-                    const docSnap = await getDoc(docRef);
-                    const elemento = document.getElementById(info.id);
-                    if (elemento) {
-                        if (docSnap.exists()) {
-                            elemento.innerText = docSnap.data().preco;
-                        } else {
-                            elemento.innerText = info.padrao;
-                        }
+                    const docSnap = await getDoc(doc(db, "precos", id));
+                    if (docSnap.exists()) {
+                        document.getElementById(id).innerText = docSnap.data().preco;
                     }
-                } catch (e) {
-                    console.error(e);
-                }
+                } catch (e) { console.error(e); }
             }
         }
 
@@ -124,16 +107,12 @@
                     card.innerHTML = `
                         <h3>✨ ${data.nome}</h3>
                         <p>${data.desc || 'Sem descrição.'}</p>
-                        <ul class="lista-precos">
-                            <li>Valor — <b>${data.valor}</b></li>
-                        </ul>
+                        <ul class="lista-precos"><li>Valor — <b>${data.valor}</b></li></ul>
                         <a href="contato.html" class="btn-contratar">Contratar</a>
                     `;
                     container.appendChild(card);
                 });
-            } catch (e) {
-                console.error(e);
-            }
+            } catch (e) { console.error(e); }
         }
 
         carregarPrecosFixos();
