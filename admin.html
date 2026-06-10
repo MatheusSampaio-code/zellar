@@ -164,7 +164,8 @@ window.salvarPreco = async function(){
   const servico = document.getElementById("servicoSelect").value;
   const preco = document.getElementById("novoPreco").value;
   if(!servico || !preco){ alert("Preencha todos os campos!"); return; }
-  const id = servico.replace(/[^a-zA-Z0-9]/g, "_");
+const id = servico.trim();
+  
   await setDoc(doc(db, "precos", id), { servico, preco, atualizado: new Date().toISOString() });
   const msg = document.getElementById("msgPreco");
   msg.style.display = "block";

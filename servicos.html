@@ -46,10 +46,11 @@ footer{background:#000;color:#888;text-align:center;padding:15px;font-size:12px}
     <h3>🏠 Limpeza Residencial</h3>
     <p>Diaristas experientes para sua casa ficar impecável.</p>
     <ul>
-      <li>4 horas — R$ 180,00</li>
-      <li>6 horas — R$ 260,00</li>
-      <li>8 horas — R$ 340,00</li>
-      <li>Pacote mensal (4h/semana) — R$ 720,00/mês</li>
+     <li data-servico="🏠 Limpeza Residencial - 4 horas">4 horas — R$ 180,00</li>
+<li data-servico="🏠 Limpeza Residencial - 6 horas">6 horas — R$ 260,00</li>
+<li data-servico="🏠 Limpeza Residencial - 8 horas">8 horas — R$ 340,00</li>
+<li data-servico="🏠 Limpeza Residencial - Pacote mensal">Pacote mensal (4h/semana) — R$ 720,00/mês</li>
+
     </ul>
     <a class="btn" href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza Residencial">Contratar</a>
   </div>
@@ -133,5 +134,52 @@ footer{background:#000;color:#888;text-align:center;padding:15px;font-size:12px}
   <p>© 2025 Zellar Serviços. Todos os direitos reservados.</p>
 </footer>
 
-</body>
+</body><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDHOnmbsKftrblC0-0vxL-U1OUONkT7bXs",
+  authDomain: "zellar-servicos.firebaseapp.com",
+  projectId: "zellar-servicos",
+  storageBucket: "zellar-servicos.firebasestorage.app",
+  messagingSenderId: "130833028955",
+  appId: "1:130833028955:web:e966c2442eb9ffd9feac7e",
+  measurementId: "G-CBF7R981PY"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function aplicarTodosOsPrecos() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "precos"));
+    
+    // Procura por todas as tags <li> da página
+    const itensLista = document.querySelectorAll("li");
+
+    querySnapshot.forEach((doc) => {
+      const nomeDoServicoBanco = doc.id; // Ex: "🏠 Limpeza Residencial - 4 horas"
+      const dados = doc.data();
+
+      itensLista.forEach((li) => {
+        // Pega o atributo data-servico OU o texto atual do li caso o data-servico não esteja lá
+        const dataServico = li.getAttribute("data-servico");
+        const textoLi = li.textContent.trim();
+
+        // Se o li for o serviço do banco, atualiza o preço na hora!
+        if (dataServico === nomeDoServicoBanco || textoLi.includes(nomeDoServicoBanco.split(" - ")[1])) {
+          const escopoTexto = nomeDoServicoBanco.split(" - ")[1] || "Valor";
+          li.innerHTML = `${escopoTexto} — ${dados.preco}`;
+        }
+      });
+    });
+  } catch (erro) {
+    console.error("Erro ao carregar os preços: ", erro);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", aplicarTodosOsPrecos);
+</script>
+
 </html>
