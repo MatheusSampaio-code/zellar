@@ -8,6 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6fa; color: #333; overflow-x: hidden; }
         
+        /* Efeito de Splash Screen Inicial */
         #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a1f5c; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; color: white; }
         #splash h1 { font-size: 32px; margin-bottom: 10px; opacity: 0; animation: fadeIn 1s forwards 0.5s; }
         #splash p { font-size: 16px; color: #f0c040; opacity: 0; animation: fadeIn 1s forwards 1.2s; }
@@ -19,32 +20,41 @@
         .bolha { position: fixed; bottom: -50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; pointer-events: none; animation: subir 8s infinite linear; z-index: 1; }
         @keyframes subir { transform: translateY(0); opacity: 1; to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
 
-        nav { background: #0a1f5c; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        /* Barra de Navegação */
+        nav { background: #0a1f5c; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
         nav .logo { color: #fff; font-size: 22px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
         nav .nav-links { display: flex; gap: 15px; }
         nav .nav-links a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; padding: 5px 10px; transition: 0.3s; }
         nav .nav-links a:hover { color: #f0c040; }
 
-        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 40px 20px; text-align: center; display: flex; justify-content: center; align-items: center; min-height: 220px; }
-        .hero-logo-wrap { width: 100%; display: flex; justify-content: center; align-items: center; }
-        .hero-logo { width: 280px; max-width: 75vw; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        /* Seção do Topo (Hero) com Textos Originais Reestabelecidos */
+        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 50px 20px; text-align: center; color: white; display: flex; flex-direction: column; align-items: center; }
+        .hero-logo-wrap { width: 100%; display: flex; justify-content: center; margin-bottom: 15px; }
+        .hero-logo { width: 260px; max-width: 80vw; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
+        .hero h2 { color: #f0c040; font-size: 24px; margin-bottom: 12px; font-weight: bold; }
+        .hero p { font-size: 15px; margin-bottom: 25px; color: #ddd; max-width: 600px; line-height: 1.4; }
+        .btn-whats-topo { background-color: #25d366; color: white; padding: 12px 28px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 16px; transition: 0.3s; }
+        .btn-whats-topo:hover { transform: scale(1.03); background-color: #20ba5a; }
 
-        .stats { display: flex; justify-content: space-around; background: white; padding: 20px; margin: -30px auto 40px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; z-index: 10; position: relative; }
+        /* Blocos de Estatísticas */
+        .stats { display: flex; justify-content: space-around; background: white; padding: 20px; margin: -25px auto 40px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; z-index: 10; position: relative; }
         .stat h3 { color: #0a1f5c; font-size: 22px; margin-bottom: 5px; }
         .stat p { color: #666; font-size: 13px; }
 
+        /* Seção de Serviços Restaurada */
         .servicos { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .servicos h2 { text-align: center; color: #0a1f5c; font-size: 28px; margin-bottom: 5px; }
         .section-line { width: 60px; height: 3px; background: #f0c040; margin: 0 auto 30px; border-radius: 2px; }
         
         .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-        .card { background: #fff; border-radius: 16px; width: 300px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 20px; transition: 0.3s; }
+        .card { background: #fff; border-radius: 16px; width: 310px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .card-body h3 { color: #0a1f5c; font-size: 18px; margin-bottom: 8px; }
-        .card-body p { color: #666; font-size: 13px; margin-bottom: 15px; min-height: 40px; }
+        .card-body h3 { color: #0a1f5c; font-size: 19px; margin-bottom: 10px; font-weight: 600; }
+        .card-body p { color: #666; font-size: 14px; margin-bottom: 20px; line-height: 1.4; min-height: 44px; }
         .card-body a { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); color: #fff; padding: 12px; text-decoration: none; border-radius: 8px; display: block; text-align: center; font-weight: bold; transition: 0.3s; }
         .card-body a:hover { background: #f0c040; color: #0a1f5c; }
 
+        /* Banner Informativo */
         .banner { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 40px 20px; text-align: center; color: #fff; margin: 40px 0; }
         .banner h2 { color: #f0c040; font-size: 24px; margin-bottom: 10px; }
         .banner p { font-size: 14px; margin-bottom: 25px; color: #ddd; }
@@ -52,6 +62,7 @@
         .btn-wp { background: #25d366; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; }
         .btn-tel { background: #f0c040; color: #0a1f5c; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; }
 
+        /* Tabela de Preços Dinâmica */
         .precos { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .precos h2 { text-align: center; color: #0a1f5c; font-size: 28px; margin-bottom: 5px; }
         .preco-grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
@@ -60,6 +71,7 @@
         .preco-item { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
         .preco-item span:last-child { color: #f0c040; font-weight: bold; }
 
+        /* Seção de Canais de Contato */
         .contato { padding: 50px 20px; background: #fff; text-align: center; }
         .contato h2 { color: #0a1f5c; font-size: 26px; margin-bottom: 5px; }
         .contato-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
@@ -80,6 +92,7 @@
     </div>
 
     <script>
+        // Criação de bolhas decorativas na tela de Splash
         for(let i=0; i<15; i++){
             const b = document.createElement('div');
             b.className = 'bolha';
@@ -112,9 +125,13 @@
 
     <div class="hero">
         <div class="hero-logo-wrap">
-            <!-- Link externo direto provisório para garantir o carregamento perfeito da logo -->
-            <img class="hero-logo" src="https://images2.imgbox.com/39/3a/bF96bH3P_o.png" alt="Zellar Serviços Logo" onerror="this.style.display='none'">
+            <img class="hero-logo" src="logo.png" alt="Zellar Serviços Logo">
         </div>
+        <h2>Sua casa limpa. Seu carro impecável.</h2>
+        <p>Tudo em um só lugar. Atendemos residências, escritórios e empresas no RJ.</p>
+        <a class="btn-whats-topo" href="https://wa.me/5521970347823">
+            💬 Falar no WhatsApp
+        </a>
     </div>
 
     <div class="stats">
@@ -238,7 +255,6 @@
         <p>© 2026 <span>Zellar Serviços</span>. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- BANCO DE DADOS FIREBASE SEGURO -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -277,7 +293,7 @@
             }
             window.addEventListener('load', carregarPrecosHome);
         } catch(err) {
-            console.error("Erro Firebase omitido para segurança do layout: ", err);
+            console.error("Erro Firebase omitido para segurança: ", err);
         }
     </script>
 </body>
