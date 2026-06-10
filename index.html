@@ -25,10 +25,10 @@
         nav .nav-links a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; padding: 5px 10px; transition: 0.3s; }
         nav .nav-links a:hover { color: #f0c040; }
 
-        /* HERO AJUSTADO PARA A LOGO TRANSPARENTE */
-        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 40px 20px; text-align: center; display: flex; justify-content: center; align-items: center; }
+        /* ESTILO DA LOGO TRANSPARENTE CENTRALIZADA */
+        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 45px 20px; text-align: center; display: flex; justify-content: center; align-items: center; }
         .hero-logo-wrap { width: 100%; display: flex; justify-content: center; align-items: center; }
-        .hero-logo { width: 260px; max-width: 80vw; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        .hero-logo { width: 260px; max-width: 80vw; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
 
         .stats { display: flex; justify-content: space-around; background: white; padding: 20px; margin: -30px auto 40px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; z-index: 10; position: relative; }
         .stat h3 { color: #0a1f5c; font-size: 22px; margin-bottom: 5px; }
@@ -76,7 +76,7 @@
 <body>
 
     <div id="splash">
-        <h1>🧹 Zellar Serviços</h1>
+        <h1>🧼 Zellar Serviços</h1>
         <p>Limpeza profissional para sua casa e empresa</p>
         <div id="wipe"></div>
     </div>
@@ -276,11 +276,7 @@
             }
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', carregarPrecosHome);
-        } else {
-            carregarPrecosHome();
-        }
+        window.addEventListener('load', carregarPrecosHome);
     </script>
 </body>
 </html>
