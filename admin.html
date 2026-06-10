@@ -57,15 +57,28 @@
             <h3>💰 Editar Preço de Serviço</h3>
             <select id="servicoSelect">
                 <option value="">Selecione o serviço...</option>
+                <option value="limp_4h">🏠 Limpeza Residencial - 4 horas</option>
+                <option value="limp_6h">🏠 Limpeza Residencial - 6 horas</option>
+                <option value="limp_8h">🏠 Limpeza Residencial - 8 horas</option>
+                <option value="limp_mensal">🏠 Limpeza Residencial - Pacote Mensal</option>
+                <option value="pass_4h">👕 Passadoria - 4 horas</option>
+                <option value="pass_6h">👕 Passadoria - 6 horas</option>
+                <option value="coz_4h">👩‍🍳 Cozinheira - 4 horas</option>
+                <option value="coz_8h">👩‍🍳 Cozinheira - Mensal 8h</option>
                 <option value="ar_12k">❄️ Ar-Condicionado - Split até 12k BTUs</option>
                 <option value="ar_24k">❄️ Ar-Condicionado - Split 18k-24k BTUs</option>
+                <option value="ar_cassete">❄️ Ar-Condicionado - Cassete ou Piso Teto</option>
                 <option value="piscina_25">🏊 Piscina - Até 25m²</option>
                 <option value="piscina_50">🏊 Piscina - 26m² a 50m²</option>
                 <option value="piscina_mensal">🏊 Piscina - Contrato mensal</option>
+                <option value="est_eco">🚗 Estética - Lavagem Ecológica</option>
+                <option value="est_hig">🚗 Estética - Higienização Interna</option>
+                <option value="est_combo">🚗 Estética - Higienização + Ar-Condicionado</option>
+                <option value="est_pol">🚗 Estética - Polimento Comercial</option>
             </select>
-            <input type="text" id="novoPreco" placeholder="Novo Valor (Ex: R$ 150,00)">
+            <input type="text" id="novoPreco" placeholder="Novo Valor (Ex: R$ 150,00 ou Sob Consulta)">
             <button onclick="window.salvarPreco()">💾 Salvar Preço</button>
-            <p class="msg" id="msgPreco">✅ Preço atualizado com sucesso!</p>
+            <p class="msg" id="msgPreco">✅ Preço updated com sucesso!</p>
         </div>
 
         <div class="card-admin">
@@ -132,13 +145,14 @@
             if(!id || !preco) { alert("Preencha todos os campos!"); return; }
 
             try {
-                await setDoc(doc(db, "precos", id), { preco });
+                await setDoc(doc(db, "precos", id), { preco: preco });
                 const msg = document.getElementById("msgPreco");
                 msg.style.display = "block";
                 setTimeout(() => msg.style.display = "none", 3000);
                 document.getElementById("novoPreco").value = "";
                 select.value = "";
             } catch (error) {
+                console.error(error);
                 alert("Erro ao salvar no banco!");
             }
         };

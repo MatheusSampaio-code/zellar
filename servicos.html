@@ -23,8 +23,8 @@
         .container { max-width: 800px; margin: 0 auto; }
         .card-servico { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 5px solid var(--secondary); }
         .card-servico h3 { margin-top: 0; color: var(--primary); font-size: 22px; display: flex; align-items: center; gap: 10px; }
-        .card-servico p { color: #555; line-height: 1.6; }
-        .lista-precos { padding-left: 20px; margin: 15px 0; }
+        .card-servico p { color: #555; line-height: 1.6; margin-bottom: 10px; }
+        .lista-precos { padding-left: 20px; margin: 15px 0; list-style-type: disc; }
         .lista-precos li { margin: 8px 0; font-size: 16px; color: #333; }
         .btn-contratar { background: var(--primary); color: white; border: none; font-weight: bold; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.2s; display: inline-block; text-decoration: none; margin-top: 10px; }
         .btn-contratar:hover { background: #001f42; transform: scale(1.05); }
@@ -44,22 +44,67 @@
         </nav>
 
         <div class="card-servico">
+            <h3>🏠 Limpeza Residencial</h3>
+            <p>Profissionais qualificados para manter sua residência impecável.</p>
+            <ul class="lista-precos">
+                <li>Limpeza Residencial - 4 horas — <b id="limp_4h">R$ 140,00</b></li>
+                <li>Limpeza Residencial - 6 horas — <b id="limp_6h">R$ 180,00</b></li>
+                <li>Limpeza Residencial - 8 horas — <b id="limp_8h">R$ 220,00</b></li>
+                <li>Pacote mensal — <b id="limp_mensal">R$ 1.040,00/mês</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
+
+        <div class="card-servico">
+            <h3>👕 Passadoria</h3>
+            <p>Roupas passadas e cuidadas com o máximo zelo.</p>
+            <ul class="lista-precos">
+                <li>Serviço de Passadoria - 4 horas — <b id="pass_4h">R$ 130,00</b></li>
+                <li>Serviço de Passadoria - 6 horas — <b id="pass_6h">R$ 170,00</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
+
+        <div class="card-servico">
+            <h3>👩‍🍳 Cozinheira</h3>
+            <p>Preparo de refeições deliciosas diretamente no conforto do seu lar.</p>
+            <ul class="lista-precos">
+                <li>Serviço de Cozinheira - 4 horas — <b id="coz_4h">R$ 150,00</b></li>
+                <li>Contrato Mensal (8h por dia) — <b id="coz_8h">R$ 2.500,00/mês</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
+
+        <div class="card-servico">
             <h3>❄️ Higienização de Ar-Condicionado</h3>
-            <p>Limpeza técnica completa do seu ar-condicionado.</p>
+            <p>Limpeza técnica completa e higienização do seu equipamento.</p>
             <ul class="lista-precos">
                 <li>Split até 12.000 BTUs — <b id="ar_12k">R$ 180,00</b></li>
                 <li>Split 18.000 a 24.000 BTUs — <b id="ar_24k">R$ 220,00</b></li>
+                <li>Cassete ou Piso Teto — <b id="ar_cassete">Sob consulta</b></li>
             </ul>
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
 
         <div class="card-servico">
             <h3>🏊 Limpeza de Piscina</h3>
-            <p>Manutenção e limpeza completa de piscinas.</p>
+            <p>Manutenção física e tratamento químico completo para sua piscina.</p>
             <ul class="lista-precos">
                 <li>Piscina até 25m² — <b id="piscina_25">R$ 180,00</b></li>
                 <li>Piscina 26m² a 50m² — <b id="piscina_50">R$ 250,00</b></li>
                 <li>Contrato mensal — <b id="piscina_mensal">R$ 550,00</b></li>
+            </ul>
+            <a href="contato.html" class="btn-contratar">Contratar</a>
+        </div>
+
+        <div class="card-servico">
+            <h3>🚗 Estética Automotiva</h3>
+            <p>Cuidado e proteção premium para o seu veículo sem sair de casa.</p>
+            <ul class="lista-precos">
+                <li>Lavagem Ecológica — <b id="est_eco">R$ 60,00</b></li>
+                <li>Higienização Interna — <b id="est_hig">R$ 250,00</b></li>
+                <li>Combo: Higienização + Ar-Cond. — <b id="est_combo">R$ 350,00</b></li>
+                <li>Polimento Comercial — <b id="est_pol">R$ 400,00</b></li>
             </ul>
             <a href="contato.html" class="btn-contratar">Contratar</a>
         </div>
@@ -83,14 +128,24 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const listaIds = ["ar_12k", "ar_24k", "piscina_25", "piscina_50", "piscina_mensal"];
+        const listaIds = [
+            "limp_4h", "limp_6h", "limp_8h", "limp_mensal",
+            "pass_4h", "pass_6h", 
+            "coz_4h", "coz_8h",
+            "ar_12k", "ar_24k", "ar_cassete",
+            "piscina_25", "piscina_50", "piscina_mensal",
+            "est_eco", "est_hig", "est_combo", "est_pol"
+        ];
 
         async function carregarPrecosFixos() {
-            for (const id de listaIds) {
+            for (const id of listaIds) {
                 try {
                     const docSnap = await getDoc(doc(db, "precos", id));
                     if (docSnap.exists()) {
-                        document.getElementById(id).innerText = docSnap.data().preco;
+                        const elemento = document.getElementById(id);
+                        if(elemento) {
+                            elemento.innerText = docSnap.data().preco;
+                        }
                     }
                 } catch (e) { console.error(e); }
             }
