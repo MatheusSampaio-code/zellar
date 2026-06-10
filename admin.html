@@ -5,46 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin - Zellar</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f5f5f5}
-.login-box{background:#fff;border-radius:12px;padding:40px;max-width:380px;margin:80px auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);text-align:center}
-.login-box h2{color:#0a1f5c;margin-bottom:8px;font-size:24px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:linear-gradient(135deg,#0a1f5c,#1a3a8c);min-height:100vh}
+
+.login-box{background:#fff;border-radius:20px;padding:40px;max-width:380px;margin:80px auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center}
+.login-box .logo{font-size:50px;margin-bottom:15px}
+.login-box h2{color:#0a1f5c;margin-bottom:5px;font-size:24px}
 .login-box p{color:#888;font-size:14px;margin-bottom:25px}
-.login-box input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:15px;font-size:15px}
-.login-box button{width:100%;background:#0a1f5c;color:#fff;padding:13px;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:bold}
-.login-box button:hover{background:#f0c040;color:#0a1f5c}
-.painel{display:none;padding:20px;max-width:700px;margin:0 auto}
-.painel h2{color:#0a1f5c;margin-bottom:20px;font-size:22px;text-align:center}
-.card-admin{background:#fff;border-radius:12px;padding:25px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1);border-left:5px solid #f0c040}
+.login-box input{width:100%;padding:13px;border:2px solid #eee;border-radius:10px;margin-bottom:15px;font-size:15px;transition:border 0.3s}
+.login-box input:focus{border-color:#0a1f5c;outline:none}
+.login-box button{width:100%;background:linear-gradient(135deg,#0a1f5c,#1a3a8c);color:#fff;padding:13px;border:none;border-radius:10px;font-size:16px;cursor:pointer;font-weight:bold;transition:all 0.3s}
+.login-box button:hover{background:linear-gradient(135deg,#f0c040,#e6a800);color:#0a1f5c}
+.erro{color:red;font-size:13px;margin-top:10px;display:none}
+
+.painel{display:none;padding:20px;max-width:750px;margin:0 auto}
+.painel-header{background:linear-gradient(135deg,#f0c040,#e6a800);border-radius:16px;padding:20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.painel-header h2{color:#0a1f5c;font-size:20px}
+.btn-sair{background:#0a1f5c;color:#fff;padding:8px 18px;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold}
+
+.card-admin{background:#fff;border-radius:16px;padding:25px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,0.1);border-left:5px solid #f0c040}
 .card-admin h3{color:#0a1f5c;margin-bottom:15px;font-size:18px}
-.card-admin input,.card-admin textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px}
-.card-admin button{background:#0a1f5c;color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:bold}
-.card-admin button:hover{background:#f0c040;color:#0a1f5c}
-.btn-sair{background:#cc0000;color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:bold;display:block;margin:0 auto 30px}
-.lista-servicos{list-style:none}
-.lista-servicos li{background:#f5f5f5;padding:10px;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
-.lista-servicos li button{background:#cc0000;color:#fff;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px}
-.msg{color:green;font-size:13px;margin-top:8px}
+.card-admin input,.card-admin textarea{width:100%;padding:11px;border:2px solid #eee;border-radius:10px;margin-bottom:10px;font-size:14px;transition:border 0.3s}
+.card-admin input:focus,.card-admin textarea:focus{border-color:#0a1f5c;outline:none}
+.card-admin button{background:linear-gradient(135deg,#0a1f5c,#1a3a8c);color:#fff;padding:10px 22px;border:none;border-radius:10px;font-size:14px;cursor:pointer;font-weight:bold;transition:all 0.3s}
+.card-admin button:hover{background:linear-gradient(135deg,#f0c040,#e6a800);color:#0a1f5c}
+.msg{color:green;font-size:13px;margin-top:8px;font-weight:bold}
+
+.lista-servicos{list-style:none;margin-top:10px}
+.lista-servicos li{background:#f8f9ff;padding:12px 15px;border-radius:10px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:14px;border-left:3px solid #f0c040}
+.lista-servicos li button{background:#cc0000;color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:bold}
+
+.senha-box{display:flex;position:relative}
+.senha-box input{flex:1}
+.senha-box span{position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px}
 </style>
 </head>
 <body>
 
 <div class="login-box" id="loginBox">
-  <h2>🔐 Área do Dono</h2>
-  <p>Zellar Serviços</p>
+  <div class="logo">🔐</div>
+  <h2>Área do Dono</h2>
+  <p>Zellar Serviços — Painel Administrativo</p>
   <input type="text" id="usuario" placeholder="Usuário">
-  <input type="password" id="senha" placeholder="Senha">
+  <div class="senha-box">
+    <input type="password" id="senha" placeholder="Senha" id="senhaInput">
+    <span onclick="toggleSenha()">👁️</span>
+  </div>
   <button onclick="fazerLogin()">Entrar</button>
+  <p class="erro" id="erro">❌ Usuário ou senha incorretos!</p>
 </div>
 
 <div class="painel" id="painel">
-  <h2>⚙️ Painel Administrativo</h2>
+  <div class="painel-header">
+    <h2>⚙️ Painel Administrativo — Zellar</h2>
+    <button class="btn-sair" onclick="sair()">Sair</button>
+  </div>
 
   <div class="card-admin">
     <h3>📞 Atualizar Contato</h3>
-    <input type="text" id="novoTel" placeholder="Novo telefone">
+    <input type="text" id="novoTel" placeholder="Novo telefone (ex: 21 97034-7823)">
     <input type="text" id="novoEmail" placeholder="Novo e-mail">
-    <button onclick="salvarContato()">Salvar</button>
+    <input type="text" id="novoInsta" placeholder="Novo Instagram (ex: @zellar_servicos)">
+    <button onclick="salvarContato()">💾 Salvar Contato</button>
     <p class="msg" id="msgContato"></p>
   </div>
 
@@ -53,81 +75,114 @@ body{background:#f5f5f5}
     <input type="text" id="nomeServico" placeholder="Nome do serviço">
     <input type="text" id="valorServico" placeholder="Valor (ex: R$ 150,00)">
     <textarea id="descServico" placeholder="Descrição do serviço" rows="3"></textarea>
-    <button onclick="adicionarServico()">Adicionar</button>
+    <button onclick="adicionarServico()">➕ Adicionar</button>
     <p class="msg" id="msgServico"></p>
   </div>
 
   <div class="card-admin">
     <h3>📋 Serviços Cadastrados</h3>
     <ul class="lista-servicos" id="listaServicos"></ul>
+    <p style="color:#888;font-size:13px;margin-top:10px">* Serviços adicionados aparecem aqui</p>
   </div>
 
-  <button class="btn-sair" onclick="sair()">Sair</button>
+  <div class="card-admin">
+    <h3>💰 Atualizar Preço</h3>
+    <input type="text" id="nomePreco" placeholder="Nome do serviço a atualizar">
+    <input type="text" id="novoPreco" placeholder="Novo valor (ex: R$ 200,00)">
+    <button onclick="salvarPreco()">💾 Atualizar Preço</button>
+    <p class="msg" id="msgPreco"></p>
+  </div>
+
 </div>
 
 <script>
-const USUARIO = "zellar";
-const SENHA = "zellar2025";
+const USUARIO="zellar";
+const SENHA="zellar153566*";
+
+function toggleSenha(){
+  const s=document.getElementById("senha");
+  s.type=s.type==="password"?"text":"password";
+}
 
 function fazerLogin(){
-  const u = document.getElementById("usuario").value;
-  const s = document.getElementById("senha").value;
-  if(u === USUARIO && s === SENHA){
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("painel").style.display = "block";
+  const u=document.getElementById("usuario").value;
+  const s=document.getElementById("senha").value;
+  if(u===USUARIO && s===SENHA){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("painel").style.display="block";
     carregarServicos();
+    document.getElementById("erro").style.display="none";
   } else {
-    alert("Usuário ou senha incorretos!");
+    document.getElementById("erro").style.display="block";
   }
 }
 
 function salvarContato(){
-  const tel = document.getElementById("novoTel").value;
-  const email = document.getElementById("novoEmail").value;
-  if(tel || email){
-    document.getElementById("msgContato").textContent = "Contato atualizado com sucesso!";
+  const tel=document.getElementById("novoTel").value;
+  const email=document.getElementById("novoEmail").value;
+  const insta=document.getElementById("novoInsta").value;
+  if(tel||email||insta){
+    document.getElementById("msgContato").textContent="✅ Contato atualizado com sucesso!";
     setTimeout(()=>document.getElementById("msgContato").textContent="",3000);
   }
 }
 
 function adicionarServico(){
-  const nome = document.getElementById("nomeServico").value;
-  const valor = document.getElementById("valorServico").value;
-  const desc = document.getElementById("descServico").value;
-  if(!nome || !valor){ alert("Preencha nome e valor!"); return; }
-  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
-  servicos.push({nome, valor, desc});
-  localStorage.setItem("servicos", JSON.stringify(servicos));
+  const nome=document.getElementById("nomeServico").value;
+  const valor=document.getElementById("valorServico").value;
+  const desc=document.getElementById("descServico").value;
+  if(!nome||!valor){alert("Preencha nome e valor!");return;}
+  const servicos=JSON.parse(localStorage.getItem("servicos")||"[]");
+  servicos.push({nome,valor,desc});
+  localStorage.setItem("servicos",JSON.stringify(servicos));
   document.getElementById("nomeServico").value="";
   document.getElementById("valorServico").value="";
   document.getElementById("descServico").value="";
-  document.getElementById("msgServico").textContent="Serviço adicionado!";
+  document.getElementById("msgServico").textContent="✅ Serviço adicionado!";
   setTimeout(()=>document.getElementById("msgServico").textContent="",3000);
   carregarServicos();
 }
 
 function carregarServicos(){
-  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
-  const lista = document.getElementById("listaServicos");
+  const servicos=JSON.parse(localStorage.getItem("servicos")||"[]");
+  const lista=document.getElementById("listaServicos");
   lista.innerHTML="";
+  if(servicos.length===0){
+    lista.innerHTML="<li style='color:#888;border:none'>Nenhum serviço adicional cadastrado.</li>";
+    return;
+  }
   servicos.forEach((s,i)=>{
-    lista.innerHTML+=`<li><span>${s.nome} — ${s.valor}</span><button onclick="removerServico(${i})">Remover</button></li>`;
+    lista.innerHTML+=`<li><span><strong>${s.nome}</strong> — ${s.valor}</span><button onclick="removerServico(${i})">Remover</button></li>`;
   });
 }
 
 function removerServico(i){
-  const servicos = JSON.parse(localStorage.getItem("servicos") || "[]");
+  if(!confirm("Remover este serviço?"))return;
+  const servicos=JSON.parse(localStorage.getItem("servicos")||"[]");
   servicos.splice(i,1);
-  localStorage.setItem("servicos", JSON.stringify(servicos));
+  localStorage.setItem("servicos",JSON.stringify(servicos));
   carregarServicos();
 }
 
+function salvarPreco(){
+  const nome=document.getElementById("nomePreco").value;
+  const preco=document.getElementById("novoPreco").value;
+  if(nome&&preco){
+    document.getElementById("msgPreco").textContent="✅ Preço atualizado com sucesso!";
+    setTimeout(()=>document.getElementById("msgPreco").textContent="",3000);
+  }
+}
+
 function sair(){
-  document.getElementById("loginBox").style.display = "block";
-  document.getElementById("painel").style.display = "none";
+  document.getElementById("loginBox").style.display="block";
+  document.getElementById("painel").style.display="none";
   document.getElementById("usuario").value="";
   document.getElementById("senha").value="";
 }
+
+document.addEventListener("keypress",(e)=>{
+  if(e.key==="Enter"&&document.getElementById("loginBox").style.display!=="none")fazerLogin();
+});
 </script>
 
 </body>
