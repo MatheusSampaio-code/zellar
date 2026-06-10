@@ -7,65 +7,46 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6fa; color: #333; overflow-x: hidden; }
-        
-        /* Splash Screen */
         #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a1f5c; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; color: white; }
         #splash h1 { font-size: 32px; margin-bottom: 10px; opacity: 0; animation: fadeIn 1s forwards 0.5s; }
         #splash p { font-size: 16px; color: #f0c040; opacity: 0; animation: fadeIn 1s forwards 1.2s; }
         #wipe { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: wipeAnim 1.5s infinite; }
-        
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes wipeAnim { to { left: 100%; } }
-        
-        .bolha { position: fixed; bottom: -50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; pointer-events: none; animation: subir 8s infinite linear; z-index: 1; }
-        @keyframes subir { transform: translateY(0); opacity: 1; to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-
-        /* Navegação */
-        nav { background: #0a1f5c; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .bolha { position: fixed; bottom: -50px; background: rgba(255,255,255,0.1); border-radius: 50%; pointer-events: none; animation: subir 8s infinite linear; z-index: 1; }
+        @keyframes subir { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        nav { background: #0a1f5c; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-bottom: 2px solid #f0c040; }
         nav .logo { color: #fff; font-size: 22px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
         nav .nav-links { display: flex; gap: 15px; }
         nav .nav-links a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; padding: 5px 10px; transition: 0.3s; }
         nav .nav-links a:hover { color: #f0c040; }
-
-        /* Topo (Hero) com a Logo Nova */
         .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 50px 20px; text-align: center; color: white; display: flex; flex-direction: column; align-items: center; }
         .hero-logo-wrap { width: 100%; display: flex; justify-content: center; margin-bottom: 15px; }
-        .hero-logo { width: 260px; max-width: 80vw; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
+        .hero-logo { width: 280px; max-width: 85vw; display: block; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3)); }
         .hero h2 { color: #f0c040; font-size: 24px; margin-bottom: 12px; font-weight: bold; }
         .hero p { font-size: 15px; margin-bottom: 25px; color: #ddd; max-width: 600px; line-height: 1.4; }
         .btn-whats-topo { background-color: #25d366; color: white; padding: 12px 28px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 16px; transition: 0.3s; }
-
-        /* Estatísticas */
         .stats { display: flex; justify-content: space-around; background: white; padding: 20px; margin: -25px auto 40px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; z-index: 10; position: relative; }
         .stat h3 { color: #0a1f5c; font-size: 22px; margin-bottom: 5px; }
         .stat p { color: #666; font-size: 13px; }
-
-        /* Seção de Serviços com Imagens Recriadas */
         .servicos { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .servicos h2 { text-align: center; color: #0a1f5c; font-size: 28px; margin-bottom: 5px; }
         .section-line { width: 60px; height: 3px; background: #f0c040; margin: 0 auto 30px; border-radius: 2px; }
-        
         .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-        .card { background: #fff; border-radius: 16px; width: 310px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 0; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .card { background: #fff; border-radius: 16px; width: 310px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        
-        /* Ajuste das Imagens dos Cards */
         .card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
         .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .card-content h3 { color: #0a1f5c; font-size: 19px; margin-bottom: 10px; font-weight: 600; }
         .card-content p { color: #666; font-size: 14px; margin-bottom: 20px; line-height: 1.4; }
         .card-content a { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); color: #fff; padding: 12px; text-decoration: none; border-radius: 8px; display: block; text-align: center; font-weight: bold; transition: 0.3s; }
         .card-content a:hover { background: #f0c040; color: #0a1f5c; }
-
-        /* Banner */
         .banner { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 40px 20px; text-align: center; color: #fff; margin: 40px 0; }
         .banner h2 { color: #f0c040; font-size: 24px; margin-bottom: 10px; }
         .banner p { font-size: 14px; margin-bottom: 25px; color: #ddd; }
         .banner-btns { display: flex; gap: 15px; justify-content: center; }
         .btn-wp { background: #25d366; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; }
         .btn-tel { background: #f0c040; color: #0a1f5c; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; }
-
-        /* Tabela de Preços */
         .precos { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .precos h2 { text-align: center; color: #0a1f5c; font-size: 28px; margin-bottom: 5px; }
         .preco-grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
@@ -73,248 +54,214 @@
         .preco-card h3 { color: #f0c040; margin-bottom: 15px; font-size: 19px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
         .preco-item { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
         .preco-item span:last-child { color: #f0c040; font-weight: bold; }
-
-        /* Contatos */
         .contato { padding: 50px 20px; background: #fff; text-align: center; }
         .contato h2 { color: #0a1f5c; font-size: 26px; margin-bottom: 5px; }
         .contato-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
         .contato-card { background: #f8f9ff; border-radius: 12px; padding: 20px; width: 260px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
         .contato-card h3 { color: #0a1f5c; margin-bottom: 8px; font-size: 16px; }
         .contato-card a { color: #1a3a8c; text-decoration: none; font-weight: bold; font-size: 14px; }
-
         footer { background: #0a1f5c; color: #aaa; text-align: center; padding: 25px; font-size: 13px; margin-top: 40px; }
         footer span { color: #f0c040; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen Inicial -->
-    <div id="splash">
-        <h1>🧼 Zellar Serviços</h1>
-        <p>Limpeza profissional para sua casa e empresa</p>
-        <div id="wipe"></div>
+<div id="splash">
+    <h1>🧼 Zellar Serviços</h1>
+    <p>Limpeza profissional para sua casa e empresa</p>
+    <div id="wipe"></div>
+</div>
+
+<script>
+for(let i=0; i<15; i++){
+    const b = document.createElement('div');
+    b.className = 'bolha';
+    const s = Math.random() * 40 + 15;
+    b.style.width = s + 'px';
+    b.style.height = s + 'px';
+    b.style.left = Math.random() * 100 + '%';
+    b.style.animationDelay = Math.random() * 4 + 's';
+    document.body.appendChild(b);
+}
+setTimeout(() => {
+    const sp = document.getElementById('splash');
+    if(sp) {
+        sp.style.transition = 'opacity 0.6s';
+        sp.style.opacity = '0';
+        setTimeout(() => sp.style.display = 'none', 600);
+    }
+}, 2000);
+</script>
+
+<nav>
+    <div class="logo">🧹 Zellar</div>
+    <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+        <a href="admin.html">Admin</a>
     </div>
+</nav>
 
-    <script>
-        for(let i=0; i<15; i++){
-            const b = document.createElement('div');
-            b.className = 'bolha';
-            const s = Math.random() * 40 + 15;
-            b.style.width = s + 'px';
-            b.style.height = s + 'px';
-            b.style.left = Math.random() * 100 + '%';
-            b.style.animationDelay = Math.random() * 4 + 's';
-            document.body.appendChild(b);
-        }
-        setTimeout(() => {
-            const sp = document.getElementById('splash');
-            if(sp) {
-                sp.style.transition = 'opacity 0.6s';
-                sp.style.opacity = '0';
-                setTimeout(() => sp.style.display = 'none', 600);
-            }
-        }, 2000);
-    </script>
-
-    <!-- Barra de Menu Superior -->
-    <nav>
-        <div class="logo">🧹 Zellar</div>
-        <div class="nav-links">
-            <a href="index.html">Início</a>
-            <a href="servicos.html">Serviços</a>
-            <a href="contato.html">Contato</a>
-            <a href="admin.html">Admin</a>
-        </div>
-    </nav>
-
-    <!-- Bloco Principal com Textos Originais e Nova Logo Local -->
-    <div class="hero">
-        <div class="hero-logo-wrap">
-            <img class="hero-logo" src="logo.png" alt="Zellar Serviços Logo">
-        </div>
-        <h2>Sua casa limpa. Seu carro impecável.</h2>
-        <p>Tudo em um só lugar. Atendemos residências, escritórios e empresas no RJ.</p>
-        <a class="btn-whats-topo" href="https://wa.me/5521970347823">
-            💬 Falar no WhatsApp
-        </a>
+<div class="hero">
+    <div class="hero-logo-wrap">
+        <img class="hero-logo" src="https://i.ibb.co/xq5SPtx1/1000572154.png" alt="Zellar Serviços Logo">
     </div>
+    <h2>Sua casa limpa. Seu carro impecável.</h2>
+    <p>Tudo em um só lugar. Atendemos residências, escritórios e empresas no RJ.</p>
+    <a class="btn-whats-topo" href="https://wa.me/5521970347823">💬 Falar no WhatsApp</a>
+</div>
 
-    <!-- Indicadores/Estatísticas -->
-    <div class="stats">
-        <div class="stat"><h3>500+</h3><p>Clientes Atendidos</p></div>
-        <div class="stat"><h3>8+</h3><p>Serviços</p></div>
-        <div class="stat"><h3>5⭐</h3><p>Avaliação</p></div>
-        <div class="stat"><h3>RJ</h3><p>Todo Rio</p></div>
-    </div>
+<div class="stats">
+    <div class="stat"><h3>500+</h3><p>Clientes Atendidos</p></div>
+    <div class="stat"><h3>8+</h3><p>Serviços</p></div>
+    <div class="stat"><h3>5⭐</h3><p>Avaliação</p></div>
+    <div class="stat"><h3>RJ</h3><p>Todo Rio</p></div>
+</div>
 
-    <!-- Lista de Serviços COM TODAS AS SUAS IMAGENS ORIGINAIS RESTAURADAS -->
-    <div class="servicos">
-        <h2>Nossos Serviços</h2>
-        <div class="section-line"></div>
-        <div class="cards">
-            <!-- Limpeza Residencial -->
-            <div class="card">
-                <img class="card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop" alt="Limpeza Residencial">
-                <div class="card-content">
-                    <h3>🏠 Limpeza Residencial</h3>
-                    <p>Diaristas experientes para deixar sua casa brilhando.</p>
-                    <a href="https://wa.me/5521970347823">Contratar</a>
-                </div>
-            </div>
-            <!-- Higienização de Ar-Condicionado -->
-            <div class="card">
-                <img class="card-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop" alt="Higienização de Ar-Condicionado">
-                <div class="card-content">
-                    <h3>❄️ Higienização de Ar-Condicionado</h3>
-                    <p>Limpeza técnica completa do seu ar-condicionado.</p>
-                    <a href="https://wa.me/5521970347823">Contratar</a>
-                </div>
-            </div>
-            <!-- Faxina em Escritórios -->
-            <div class="card">
-                <img class="card-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" alt="Faxina em Escritórios">
-                <div class="card-content">
-                    <h3>🏢 Faxina em Escritórios</h3>
-                    <p>Ambientes corporativos limpos e organizados.</p>
-                    <a href="https://wa.me/5521970347823">Contratar</a>
-                </div>
-            </div>
-            <!-- Estética Automotiva -->
-            <div class="card">
-                <img class="card-img" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=600&auto=format&fit=crop" alt="Estética Automotiva">
-                <div class="card-content">
-                    <h3>🚗 Estética Automotiva</h3>
-                    <p>Lavagem ecológica e higienização interna completa.</p>
-                    <a href="https://wa.me/5521970347823">Contratar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Banner secundário -->
-    <div class="banner">
-        <h2>🌟 Sua escolha, nossa limpeza!</h2>
-        <p>Limpamos apenas o cômodo que você prefere, solicite orçamento.</p>
-        <div class="banner-btns">
-            <a class="btn-wp" href="https://wa.me/5521970347823">WhatsApp</a>
-            <a class="btn-tel" href="tel:+5521970347823">📞 Ligar</a>
-        </div>
-    </div>
-
-    <!-- Tabela de Preços -->
-    <div class="precos">
-        <h2>Tabela de Preços</h2>
-        <div class="section-line"></div>
-        <div class="preco-grid">
-            
-            <div class="preco-card">
+<div class="servicos">
+    <h2>Nossos Serviços</h2>
+    <div class="section-line"></div>
+    <div class="cards">
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop" alt="Limpeza Residencial">
+            <div class="card-content">
                 <h3>🏠 Limpeza Residencial</h3>
-                <div class="preco-item"><span>4 horas</span><span id="limp_4h">Sob Consulta</span></div>
-                <div class="preco-item"><span>6 horas</span><span id="limp_6h">Sob Consulta</span></div>
-                <div class="preco-item"><span>8 horas</span><span id="limp_8h">Sob Consulta</span></div>
-                <div class="preco-item"><span>Pacote mensal</span><span id="limp_mensal">Sob Consulta</span></div>
+                <p>Diaristas experientes para deixar sua casa brilhando.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza Residencial">Contratar</a>
             </div>
-
-            <div class="preco-card">
-                <h3>👕 Passadoria</h3>
-                <div class="preco-item"><span>4 horas</span><span id="pass_4h">Sob Consulta</span></div>
-                <div class="preco-item"><span>6 horas</span><span id="pass_6h">Sob Consulta</span></div>
-                <h3 style="margin-top:15px">👩‍🍳 Cozinheira</h3>
-                <div class="preco-item"><span>4 horas</span><span id="coz_4h">Sob Consulta</span></div>
-                <div class="preco-item"><span>Mensal 8h</span><span id="coz_8h">Sob Consulta</span></div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop" alt="Ar-Condicionado">
+            <div class="card-content">
+                <h3>❄️ Higienização de Ar-Condicionado</h3>
+                <p>Limpeza técnica completa do seu ar-condicionado.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Higienização de Ar">Contratar</a>
             </div>
-
-            <div class="preco-card">
-                <h3>❄️ Ar-Condicionado</h3>
-                <div class="preco-item"><span>Split até 12k BTUs</span><span id="ar_12k">Sob Consulta</span></div>
-                <div class="preco-item"><span>Split 18k-24k BTUs</span><span id="ar_24k">Sob Consulta</span></div>
-                <div class="preco-item"><span>Cassete/Piso Teto</span><span id="ar_cassete">Sob Consulta</span></div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" alt="Escritório">
+            <div class="card-content">
+                <h3>🏢 Faxina em Escritórios</h3>
+                <p>Ambientes corporativos limpos e organizados.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Faxina em Escritório">Contratar</a>
             </div>
-
-            <div class="preco-card">
-                <h3>🏊 Piscina</h3>
-                <div class="preco-item"><span>Até 25m²</span><span id="piscina_25">Sob Consulta</span></div>
-                <div class="preco-item"><span>26m² a 50m²</span><span id="piscina_50">Sob Consulta</span></div>
-                <div class="preco-item"><span>Contrato mensal</span><span id="piscina_mensal">Sob Consulta</span></div>
-            </div>
-
-            <div class="preco-card">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=600&auto=format&fit=crop" alt="Estética Automotiva">
+            <div class="card-content">
                 <h3>🚗 Estética Automotiva</h3>
-                <div class="preco-item"><span>Lavagem Ecológica</span><span id="est_eco">Sob Consulta</span></div>
-                <div class="preco-item"><span>Higienização Int.</span><span id="est_hig">Sob Consulta</span></div>
-                <div class="preco-item"><span>Higien. + Ar-Con</span><span id="est_combo">Sob Consulta</span></div>
-                <div class="preco-item"><span>Polimento Comerc.</span><span id="est_pol">Sob Consulta</span></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Rodapé de Contatos -->
-    <div class="contato">
-        <h2>Fale Conosco</h2>
-        <div class="section-line"></div>
-        <div class="contato-cards">
-            <div class="contato-card">
-                <h3>WhatsApp</h3>
-                <a href="https://wa.me/5521970347823">(21) 97034-7823</a>
-            </div>
-            <div class="contato-card">
-                <h3>E-mail</h3>
-                <a href="mailto:zellar.gestao@gmail.com">zellar.gestao@gmail.com</a>
-            </div>
-            <div class="contato-card">
-                <h3>Instagram</h3>
-                <a href="https://instagram.com/zellar_servicos">@zellar_servicos</a>
+                <p>Lavagem ecológica e higienização interna completa.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Estética Automotiva">Contratar</a>
             </div>
         </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1572331165267-854da2b021c9?q=80&w=600&auto=format&fit=crop" alt="Piscina">
+            <div class="card-content">
+                <h3>🏊 Limpeza de Piscina</h3>
+                <p>Manutenção e limpeza completa de piscinas.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza de Piscina">Contratar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=600&auto=format&fit=crop" alt="Cozinheira">
+            <div class="card-content">
+                <h3>👩‍🍳 Cozinheira Residencial</h3>
+                <p>Profissionais para cozinhar no conforto da sua casa.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Cozinheira">Contratar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=600&auto=format&fit=crop" alt="Passadoria">
+            <div class="card-content">
+                <h3>👕 Passadoria</h3>
+                <p>Roupas passadas com cuidado e eficiência.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Passadoria">Contratar</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=600&auto=format&fit=crop" alt="Eventos">
+            <div class="card-content">
+                <h3>🎉 Limpeza para Eventos</h3>
+                <p>Equipe preparada para deixar seu evento impecável.</p>
+                <a href="https://wa.me/5521970347823?text=Olá, quero contratar Limpeza para Eventos">Contratar</a>
+            </div>
+        </div>
     </div>
+</div>
 
-    <footer>
-        <p>© 2026 <span>Zellar Serviços</span>. Todos os direitos reservados.</p>
-    </footer>
+<div class="banner">
+    <h2>🌟 Sua escolha, nossa limpeza!</h2>
+    <p>Limpamos apenas o cômodo que você prefere, solicite orçamento.</p>
+    <div class="banner-btns">
+        <a class="btn-wp" href="https://wa.me/5521970347823">💬 WhatsApp</a>
+        <a class="btn-tel" href="tel:+5521970347823">📞 Ligar</a>
+    </div>
+</div>
 
-    <!-- INTEGRAÇÃO COM BANCO DE DADOS FIREBASE -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<div class="precos">
+    <h2>Tabela de Preços</h2>
+    <div class="section-line"></div>
+    <div class="preco-grid">
+        <div class="preco-card">
+            <h3>🏠 Limpeza Residencial</h3>
+            <div class="preco-item"><span>4 horas</span><span id="limp_4h">R$ 180,00</span></div>
+            <div class="preco-item"><span>6 horas</span><span id="limp_6h">R$ 260,00</span></div>
+            <div class="preco-item"><span>8 horas</span><span id="limp_8h">R$ 340,00</span></div>
+            <div class="preco-item"><span>Pacote mensal</span><span id="limp_mensal">R$ 720,00/mês</span></div>
+        </div>
+        <div class="preco-card">
+            <h3>👕 Passadoria</h3>
+            <div class="preco-item"><span>4 horas</span><span id="pass_4h">R$ 170,00</span></div>
+            <div class="preco-item"><span>6 horas</span><span id="pass_6h">R$ 250,00</span></div>
+            <h3 style="margin-top:15px">👩‍🍳 Cozinheira</h3>
+            <div class="preco-item"><span>4 horas</span><span id="coz_4h">R$ 220,00</span></div>
+            <div class="preco-item"><span>Mensal 8h</span><span id="coz_8h">R$ 1.040,00</span></div>
+        </div>
+        <div class="preco-card">
+            <h3>❄️ Ar-Condicionado</h3>
+            <div class="preco-item"><span>Split até 12k BTUs</span><span id="ar_12k">R$ 180,00</span></div>
+            <div class="preco-item"><span>Split 18k-24k BTUs</span><span id="ar_24k">R$ 220,00</span></div>
+            <div class="preco-item"><span>Cassete/Piso Teto</span><span id="ar_cassete">Sob consulta</span></div>
+        </div>
+        <div class="preco-card">
+            <h3>🏊 Piscina</h3>
+            <div class="preco-item"><span>Até 25m²</span><span id="piscina_25">R$ 180,00</span></div>
+            <div class="preco-item"><span>26m² a 50m²</span><span id="piscina_50">R$ 250,00</span></div>
+            <div class="preco-item"><span>Contrato mensal</span><span id="piscina_mensal">R$ 550,00</span></div>
+        </div>
+        <div class="preco-card">
+            <h3>🚗 Estética Automotiva</h3>
+            <div class="preco-item"><span>Lavagem Ecológica</span><span id="est_eco">R$ 60,00</span></div>
+            <div class="preco-item"><span>Higienização Int.</span><span id="est_hig">R$ 180,00</span></div>
+            <div class="preco-item"><span>Higien. + Ar-Cond.</span><span id="est_combo">R$ 250,00</span></div>
+            <div class="preco-item"><span>Polimento Comerc.</span><span id="est_pol">R$ 350,00+</span></div>
+        </div>
+    </div>
+</div>
 
-        try {
-            const firebaseConfig = {
-                apiKey: "AIzaSyDHOnmbsKftrblC0-OvxL-U1OUONkT7bXs",
-                authDomain: "zellar-servicos.firebaseapp.com",
-                projectId: "zellar-servicos",
-                storageBucket: "zellar-servicos.appspot.com",
-                messagingSenderId: "13083302895",
-                appId: "1:13083302895:web:e966c2442eb9ffd9feac7e"
-            };
+<div class="contato">
+    <h2>Fale Conosco</h2>
+    <div class="section-line"></div>
+    <div class="contato-cards">
+        <div class="contato-card">
+            <h3>💬 WhatsApp</h3>
+            <a href="https://wa.me/5521970347823">(21) 97034-7823</a>
+        </div>
+        <div class="contato-card">
+            <h3>✉️ E-mail</h3>
+            <a href="mailto:zellar.gestao@gmail.com">zellar.gestao@gmail.com</a>
+        </div>
+        <div class="contato-card">
+            <h3>📸 Instagram</h3>
+            <a href="https://instagram.com/zellar_servicos">@zellar_servicos</a>
+        </div>
+    </div>
+</div>
 
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
+<footer>
+    <p>© 2026 <span>Zellar Serviços</span>. Todos os direitos reservados.</p>
+</footer>
 
-            const listaIds = [
-                "limp_4h", "limp_6h", "limp_8h", "limp_mensal",
-                "pass_4h", "pass_6h", "coz_4h", "coz_8h",
-                "ar_12k", "ar_24k", "ar_cassete",
-                "piscina_25", "piscina_50", "piscina_mensal",
-                "est_eco", "est_hig", "est_combo", "est_pol"
-            ];
-
-            async function carregarPrecosHome() {
-                for (const id of listaIds) {
-                    try {
-                        const docSnap = await getDoc(doc(db, "precos", id));
-                        if (docSnap.exists() && docSnap.data().preco) {
-                            const elemento = document.getElementById(id);
-                            if(elemento) elemento.innerText = docSnap.data().preco;
-                        }
-                    } catch (e) { console.log("Erro id: " + id); }
-                }
-            }
-            window.addEventListener('load', carregarPrecosHome);
-        } catch(err) {
-            console.error("Erro Firebase: ", err);
-        }
-    </script>
 </body>
 </html>
-
