@@ -25,10 +25,10 @@
         nav .nav-links a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; padding: 5px 10px; transition: 0.3s; }
         nav .nav-links a:hover { color: #f0c040; }
 
-        /* HERO CENTRALIZADO E REMOVENDO O FUNDO BRANCO DA LOGO */
-        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 50px 20px; text-align: center; display: flex; justify-content: center; align-items: center; }
+        /* HERO AJUSTADO PARA A LOGO TRANSPARENTE */
+        .hero { background: linear-gradient(135deg, #0a1f5c, #1a3a8c); padding: 40px 20px; text-align: center; display: flex; justify-content: center; align-items: center; }
         .hero-logo-wrap { width: 100%; display: flex; justify-content: center; align-items: center; }
-        .hero-logo { width: 280px; max-width: 80vw; display: block; mix-blend-mode: multiply; filter: contrast(1.1); }
+        .hero-logo { width: 260px; max-width: 80vw; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
 
         .stats { display: flex; justify-content: space-around; background: white; padding: 20px; margin: -30px auto 40px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; z-index: 10; position: relative; }
         .stat h3 { color: #0a1f5c; font-size: 22px; margin-bottom: 5px; }
@@ -112,8 +112,7 @@
 
     <div class="hero">
         <div class="hero-logo-wrap">
-            <!-- Link da sua imagem oficial hospedada no repositório do site -->
-            <img class="hero-logo" src="1000570167.jpg" alt="Zellar Serviços Logo">
+            <img class="hero-logo" src="logo.png" alt="Zellar Serviços Logo">
         </div>
     </div>
 
@@ -238,7 +237,6 @@
         <p>© 2026 <span>Zellar Serviços</span>. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- CONEXÃO CENTRALIZADA COM FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
